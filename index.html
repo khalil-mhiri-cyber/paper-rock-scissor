@@ -9,263 +9,278 @@
       <p>Score</p>
       <span id="score">12</span>
     </div>
-    <style>
-      :root {
-        --dark-text: hsl(229, 25%, 31%);
-        --score-text: hsl(229, 64%, 46%);
-        --header-outline: hsl(217, 16%, 45%);
+  </header>
+  <style>
+    :root {
+      --dark-text: hsl(229, 25%, 31%);
+      --score-text: hsl(229, 64%, 46%);
+      --header-outline: hsl(217, 16%, 45%);
 
-        --bg-gradient: radial-gradient(circle at top,
-            hsl(214, 47%, 23%),
-            hsl(237, 49%, 15%));
+      --bg-gradient: radial-gradient(circle at top,
+          hsl(214, 47%, 23%),
+          hsl(237, 49%, 15%));
 
-        --rock: hsl(349, 71%, 52%);
-        --paper: hsl(230, 89%, 65%);
-        --scissors: hsl(39, 89%, 49%);
-      }
+      --rock: hsl(349, 71%, 52%);
+      --paper: hsl(230, 89%, 65%);
+      --scissors: hsl(39, 89%, 49%);
+    }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      body {
-        min-height: 100vh;
-        font-family: Arial, Helvetica, sans-serif;
-        background: var(--bg-gradient);
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg-gradient);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      .header {
-        width: 90%;
-        max-width: 700px;
-        border: 3px solid var(--header-outline);
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 30px;
+    .header {
+      width: 90%;
+      max-width: 700px;
+      border: 3px solid var(--header-outline);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 30px;
 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
+    .header h1 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .score-box {
+      background: white;
+      color: var(--dark-text);
+      padding: 10px 25px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .score-box p {
+      color: var(--score-text);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .score-box span {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .choices {
+      margin-top: 80px;
+      width: 300px;
+      height: 260px;
+      gap: 40px;
+      position: relative;
+    }
+
+    .choices button {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow: inset 0 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+
+    }
+
+    .choices button:hover {
+      transform: scale(1.1);
+    }
+
+    button[data-choice="rock"] {
+      outline: 15px solid var(--rock);
+      position: relative;
+      left: 90px;
+      bottom: 308px;
+      right: 30px;
+    }
+
+    button[data-choice="paper"] {
+      outline: 15px solid var(--paper);
+      position: relative;
+      bottom: 308px;
+      right: 30px;
+    }
+
+    button[data-choice="scissors"] {
+      outline: 15px solid var(--scissors);
+      position: relative;
+      left: 236px;
+      bottom: 427px;
+    }
+
+    .result {
+      margin-top: 144px;
+      text-align: center;
+    }
+
+    .result h2 {
+      font-size: 2.5rem;
+      margin: 20px 0;
+    }
+
+    .result button {
+      padding: 12px 30px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .rules-btn {
+      margin-top: auto;
+      margin-bottom: 30px;
+
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+
+      padding: 10px 30px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-left: 1400px;
+    }
+
+    @media (max-width: 500px) {
       .header h1 {
-        font-size: 1.5rem;
-        line-height: 1.2;
-        text-transform: uppercase;
-      }
-
-      .score-box {
-        background: white;
-        color: var(--dark-text);
-        padding: 10px 25px;
-        border-radius: 8px;
-        text-align: center;
-      }
-
-      .score-box p {
-        color: var(--score-text);
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-      }
-
-      .score-box span {
-        font-size: 2.5rem;
-        font-weight: bold;
+        font-size: 1.2rem;
       }
 
       .choices {
-        margin-top: 80px;
-        width: 300px;
-        height: 260px;
-        gap: 40px;
-        position: relative;
+        gap: 30px;
       }
 
       .choices button {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        font-size: 2rem;
-
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        box-shadow: inset 0 5px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-
+        width: 100px;
+        height: 100px;
       }
+    }
 
-      .choices button:hover {
-        transform: scale(1.1);
-      }
+    .choice-btn.paper {
+      bottom: -92px;
+      right: 4px;
+      border-radius: 80px;
+    }
 
-      button[data-choice="rock"] {
-        outline: 15px solid var(--rock);
-        position: relative;
-        left: 90px;
-        bottom: 308px;
-        right: 30px;
-      }
+    .choice-btn.scissors {
+      bottom: -75px;
+      left: 6px;
+      border-radius: 80px;
+    }
 
-      button[data-choice="paper"] {
-        outline: 15px solid var(--paper);
-        position: relative;
-        bottom: 308px;
-        right: 30px;
-      }
+    .choice-btn.rock {
+      bottom: -82px;
+      left: 1px;
+      border-radius: 80px;
+    }
 
-      button[data-choice="scissors"] {
-        outline: 15px solid var(--scissors);
-        position: relative;
-        left: 236px;
-        bottom: 427px;
-      }
+    .result {
+      display: flex;
+      gap: 93px;
+    }
 
-      .result {
-        margin-top: 144px;
-        text-align: center;
-      }
+    .pick {
+      display: flex;
+      flex-direction: column;
+    }
 
-      .result h2 {
-        font-size: 2.5rem;
-        margin: 20px 0;
-      }
+    .result-text {
+      margin-top: 40px;
+      font-size: 40px;
+    }
 
-      .result button {
-        padding: 12px 30px;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
+    #play-again {
+      margin-top: 20px;
+      padding: 14px 48px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background-color: #ffffff;
+      color: #e63946;
+      /* red text */
+      border: none;
+      border-radius: 9px;
+      /* pill shape */
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
 
-      .hidden {
-        display: none;
-      }
+    .rules-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      display: none;
+    }
 
-      .rules-btn {
-        margin-top: auto;
-        margin-bottom: 30px;
+    .rules-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      position: relative;
+      max-width: 400px;
+      width: 90%;
+    }
 
-        background: transparent;
-        color: white;
-        border: 2px solid white;
-        border-radius: 8px;
+    .rules-content img {
+      width: 100%;
+    }
 
-        padding: 10px 30px;
-        letter-spacing: 2px;
-        cursor: pointer;
-        margin-left: 1400px;
-      }
+    .rules-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-      @media (max-width: 500px) {
-        .header h1 {
-          font-size: 1.2rem;
-        }
+    .rules-header h2 {
+      color: var(--dark-text);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-        .choices {
-          gap: 30px;
-        }
+    .close-rules {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--header-outline);
+    }
+  </style>
 
-        .choices button {
-          width: 100px;
-          height: 100px;
-        }
-      }
-
-      .choice-btn.paper {
-        bottom: -92px;
-        right: 4px;
-        border-radius: 80px;
-      }
-
-      .choice-btn.scissors {
-        bottom: -75px;
-        left: 6px;
-        border-radius: 80px;
-      }
-
-      .choice-btn.rock {
-        bottom: -82px;
-        left: 1px;
-        border-radius: 80px;
-      }
-
-      .result {
-        display: flex;
-        gap: 93px;
-      }
-
-      .pick {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .result-text {
-        margin-top: 40px;
-        font-size: 40px;
-      }
-
-      #play-again {
-        margin-top: 20px;
-        padding: 14px 48px;
-        font-size: 14px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        background-color: #ffffff;
-        color: #e63946;
-        /* red text */
-        border: none;
-        border-radius: 9px;
-        /* pill shape */
-        cursor: pointer;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-      }
-      @media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .choices {
-    width: 240px;
-    gap: 25px;
-  }
-
-  .choices button {
-    width: 90px;
-    height: 90px;
-  }
-
-  .result {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .result-text {
-    font-size: 28px;
-  }
-
-  .rules-btn {
-    margin-left: 0;
-  }
-}
-
-    </style>
-  </header>
 
   <main>
     <!-- Step 1: choice buttons -->
@@ -289,14 +304,105 @@
   </main>
 
   <button class="rules-btn">Rules</button>
+  <!-- Rules Modal -->
+  <div class="rules-modal hidden">
+    <div class="rules-content">
+      <div class="rules-header">
+        <h2>Rules</h2>
+        <button class="close-rules">✕</button>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="304" height="270">
+        <defs>
+          <linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF" stop-opacity=".097" />
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="b" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF" stop-opacity=".097" />
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <g fill="none" fill-rule="evenodd">
+          <ellipse cx="53.189" cy="54.815" fill="#B1B4C5" rx="53.189" ry="54.815" />
+          <ellipse cx="53.189" cy="52.385" fill="url(#a)" rx="53.189" ry="52.385" />
+          <g transform="translate(12.357 12.421)">
+            <ellipse cx="40.832" cy="41.044" fill="#E1E4ED" rx="40.832" ry="41.044" />
+            <path fill="#8A90AC" fill-rule="nonzero"
+              d="M56.697 30.417a2.125 2.125 0 00-.904-.146c-.417.03-.755.201-.955.481-1.177 1.666-2.141 4.81-2.919 7.337-.357 1.169-.836 2.733-1.183 3.475-.362-2.08.047-9.697.206-12.63l.002-.047c.11-2.038.125-2.396.1-2.553-.174-1.118-.618-1.852-1.319-2.18-.708-.333-1.629-.186-2.62.417-.497.303-.635 1.345-1.061 6.067l-.002.02c-.235 2.595-.776 8.568-1.441 9.563-.75-1.392-1.784-9.3-2.23-12.722-.312-2.397-.494-3.774-.616-4.19-.257-.87-1.343-1.611-2.418-1.653-.895-.044-1.629.415-1.98 1.214-.655.736-.423 3.179.302 8.964.344 2.754 1.056 8.441.608 9.08-.893-.099-2.427-3.661-4.559-10.592-.598-1.942-.783-2.525-.967-2.78-.362-.891-1.593-1.578-2.696-1.5a2.314 2.314 0 00-.277.036c-.578.116-1.896.653-1.615 3.13.779 3.435 1.624 5.957 2.445 8.405l.016.05c.491 1.465.955 2.85 1.387 4.388 1.016 3.63.621 5.882.616 5.907-.034.232-.105.374-.211.423a.405.405 0 01-.143.033c-.322.023-.805-.193-1.055-.333-.568-1.098-3.4-6.33-5.967-7.055L25.15 41l-.093.008c-.942.09-1.634.45-2.057 1.068-.67.978-.393 2.224-.325 2.474l.038.09c.02.037 2.079 3.825 2.397 5.587.275 1.511 1.696 3.148 2.838 4.464l.047.054c.373.43.695.802.948 1.146 3.316 3.492 8.558 6.428 8.601 6.452.654.487 1.018.958 1.056 1.363a.595.595 0 01-.117.43l-.114.12.725.711 13.832-.98.59-2.73c1.823-7.705 1.442-14.275 1.436-14.319.007-.242.518-2.58.93-4.468l.011-.048c.82-3.763 1.838-8.444 2.034-10.225.085-.761-.398-1.46-1.23-1.779z" />
+          </g>
+          <g transform="translate(196)">
+            <ellipse cx="53.686" cy="54.815" fill="#B1B4C5" rx="53.686" ry="54.815" />
+            <ellipse cx="53.686" cy="52.385" fill="url(#b)" rx="53.686" ry="52.385" />
+            <g transform="translate(12.473 12.421)">
+              <ellipse cx="41.214" cy="41.044" fill="#E1E4ED" rx="41.214" ry="41.044" />
+              <path fill="#8A90AC" fill-rule="nonzero"
+                d="M30.455 40.692l4.451-6.234c-1.85-.307-5.248-.375-8.031 2.397-4.388 4.37-6.165 13.809-6.535 16.093l11.15 11.105c2.008-.17 10.896-1.353 19.46-9.881.09-.184 2.177-1.72.471-3.418-.814-.81-2.162-.796-2.993.033a1.051 1.051 0 01-1.497.015 1.04 1.04 0 01.015-1.49l3.026-3.014c1.538-1.532.089-4.116-2.058-3.495l-2.477 2.112a1.065 1.065 0 01-1.497-.103c-.384-.443-.302-1.114.135-1.492 8.654-7.562 7.39-6.65 12.958-11.848 2.08-1.725-.536-4.776-2.586-3.03L40.978 40.506a1.051 1.051 0 01-1.378-.015c-.445-.383-.455-.934-.164-1.37l9.395-14.545c1.373-1.852-1.33-3.91-2.776-2.042L32.164 41.881a1.05 1.05 0 01-1.47.255 1.02 1.02 0 01-.24-1.444z" />
+            </g>
+          </g>
+          <g transform="translate(98 160)">
+            <ellipse cx="53.686" cy="54.815" fill="#B1B4C5" rx="53.686" ry="54.815" />
+            <ellipse cx="53.686" cy="52.385" fill="url(#b)" rx="53.686" ry="52.385" />
+            <g transform="translate(12.473 12.421)">
+              <ellipse cx="41.214" cy="41.044" fill="#E1E4ED" rx="41.214" ry="41.044" />
+              <path fill="#8A90AC" fill-rule="nonzero"
+                d="M57.179 35.15c-.475-5.997-7.208-5.385-7.208-5.385-2.842-5.01-7.281-1.381-7.281-1.381-3.41-4.911-7.687-.36-7.687-.36-7.373-.796-7.087 5.234-7.087 5.234-.173 1.917 1.04 7.847 1.04 7.847-1.094-3.418-3.467-.581-3.467-.581-2.917 4.502-.721 6.967-.721 6.967 3.947 4.626 12.357 10.18 12.357 10.18 3.046 1.745 1.757 3.3 1.757 3.3l18.42-3.044.424-3.494c2.8-8.472-.547-19.284-.547-19.284z" />
+            </g>
+          </g><text fill="#B1B4C5" font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed" font-size="13"
+            font-style="condensed" font-weight="bold">
+            <tspan x="134" y="31">BEATS</tspan>
+          </text><text fill="#B1B4C5" font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed" font-size="13"
+            font-style="condensed" font-weight="bold">
+            <tspan x="40" y="147">BEATS</tspan>
+          </text><text fill="#B1B4C5" font-family="BarlowSemiCondensed-Bold, Barlow Semi Condensed" font-size="13"
+            font-style="condensed" font-weight="bold">
+            <tspan x="235" y="147">BEATS</tspan>
+          </text>
+          <g fill="#B1B4C5" transform="matrix(-1 0 0 1 177 39)">
+            <rect width="50" height="4" y="10" rx="2" />
+            <path
+              d="M41.963 2.015l8.59 8.728c.716.727.71 1.896-.013 2.616a1.833 1.833 0 01-2.6-.013l-8.59-8.728a1.855 1.855 0 01.013-2.616 1.833 1.833 0 012.6.013z" />
+            <path
+              d="M39.35 19.382l8.59-8.728a1.833 1.833 0 012.6-.013c.723.72.729 1.889.013 2.616l-8.59 8.728a1.833 1.833 0 01-2.6.013 1.855 1.855 0 01-.013-2.616z" />
+          </g>
+          <g fill="#B1B4C5" transform="scale(1 -1) rotate(-55 -82.574 -131.195)">
+            <rect width="50" height="4" y="10" rx="2" />
+            <path
+              d="M41.963 2.015l8.59 8.728c.716.727.71 1.896-.013 2.616a1.833 1.833 0 01-2.6-.013l-8.59-8.728a1.855 1.855 0 01.013-2.616 1.833 1.833 0 012.6.013z" />
+            <path
+              d="M39.35 19.382l8.59-8.728a1.833 1.833 0 012.6-.013c.723.72.729 1.889.013 2.616l-8.59 8.728a1.833 1.833 0 01-2.6.013 1.855 1.855 0 01-.013-2.616z" />
+          </g>
+          <g fill="#B1B4C5" transform="rotate(-55 240.022 -103.651)">
+            <rect width="50" height="4" y="10" rx="2" />
+            <path
+              d="M41.963 2.015l8.59 8.728c.716.727.71 1.896-.013 2.616a1.833 1.833 0 01-2.6-.013l-8.59-8.728a1.855 1.855 0 01.013-2.616 1.833 1.833 0 012.6.013z" />
+            <path
+              d="M39.35 19.382l8.59-8.728a1.833 1.833 0 012.6-.013c.723.72.729 1.889.013 2.616l-8.59 8.728a1.833 1.833 0 01-2.6.013 1.855 1.855 0 01-.013-2.616z" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
 </body>
 <script>
+  const rulesBtn = document.querySelector('.rules-btn');
   const choices = ["rock", "paper", "scissors"];
   const buttons = document.querySelectorAll("[data-choice]");
   const resultText = document.getElementById("result-text");
   const scoreEl = document.getElementById("score");
   const choicesSection = document.querySelector(".choices");
   let score = 12;
+  const rulesModal = document.querySelector('.rules-modal');
+  const closeRulesBtn = document.querySelector('.close-rules');
+
+  rulesBtn.addEventListener('click', () => {
+     rulesModal.style.display = 'flex';
+  });
+
+  closeRulesBtn.addEventListener('click', () => {
+    rulesModal.style.display = 'none';
+  });
+
 
   buttons.forEach(button => {
     button.addEventListener("click", () => {
@@ -326,6 +432,30 @@
       </div>
     </section>
   `;
+    const playAgainBtn = document.getElementById("play-again");
+  playAgainBtn.addEventListener("click", () => {
+    // Reset the choices section to original buttons
+    choicesSection.style.width = "300px";
+    choicesSection.innerHTML = `
+      <svg width="313" height="278" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="#000" stroke-width="15" fill="none" opacity=".2" d="M156.5 262 300 8H13z" />
+      </svg>
+      <button data-choice="paper">${getChoiceButton("paper").match(/<svg[\s\S]*<\/svg>/)[0]}</button>
+      <button data-choice="scissors">${getChoiceButton("scissors").match(/<svg[\s\S]*<\/svg>/)[0]}</button>
+      <button data-choice="rock">${getChoiceButton("rock").match(/<svg[\s\S]*<\/svg>/)[0]}</button>
+    `;
+
+    // Re-add the click listeners to the choice buttons
+    const newButtons = choicesSection.querySelectorAll("[data-choice]");
+    newButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const userChoice = button.dataset.choice;
+        const houseChoice = choices[Math.floor(Math.random() * 3)];
+        const result = getResult(userChoice, houseChoice);
+        renderResult(userChoice, houseChoice, result);
+      });
+    });
+  });
   }
   function getChoiceButton(choice) {
     const svgs = {
